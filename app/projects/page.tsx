@@ -57,12 +57,12 @@ export default function ProjectsPage() {
                 whileTap={{ scale: 0.95 }}
               >
                 {filter.label}
-                {activeFilter === filter.value && (
+                {/* {activeFilter === filter.value && (
                   <motion.div
                     layoutId="filter-underline"
                     className="absolute inset-0 rounded-full bg-accent opacity-0"
                   />
-                )}
+                )} */}
               </motion.button>
             ))}
           </div>
