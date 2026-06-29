@@ -50,6 +50,21 @@ export const projects: Project[] = [
       "/rbistaff/image6.jpeg",
     ],
     year: 2026,
+  }, {
+    id: "3",
+    slug: "iit",
+    name: "RBI Staff Quarter",
+    location: "Powai, Mumbai",
+    status: "ongoing",
+    coverImage: "/iit/iit-3.jpeg",
+    description: "Multi-tower luxury residential complex with premium finishing",
+    images: [
+      "/iit/iit-4.jpeg",
+      "/iit/iit-3.jpeg",
+      "/iit/iit-1.jpeg",
+      "/iit/iit-2.jpeg",
+    ],
+    year: 2026,
   },
 ];
 
