@@ -53,11 +53,11 @@ export const projects: Project[] = [
   }, {
     id: "3",
     slug: "iit",
-    name: "RBI Staff Quarter",
-    location: "Powai, Mumbai",
+    name: "Residential Building",
+    location: "IIT Bombay, Powai, Mumbai",
     status: "ongoing",
     coverImage: "/iit/iit-3.jpeg",
-    description: "Multi-tower luxury residential complex with premium finishing",
+    description: "Construction of Residential Buildings consisting of Type-II",
     images: [
       "/iit/iit-4.jpeg",
       "/iit/iit-3.jpeg",
