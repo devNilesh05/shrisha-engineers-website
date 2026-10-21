@@ -1,9 +1,14 @@
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+
 export const metadata = {
-  title: "Projects | Shrisha Engineers",
-  description: "Explore our completed, ongoing, and upcoming real estate projects across Greater Noida and surrounding regions.",
+  title: "Projects Portfolio | Shrisha Engineers",
+  description:
+    "Explore completed and ongoing civil construction and structural engineering projects by Shrisha Engineers in Navi Mumbai, Mumbai, and Greater Noida.",
   openGraph: {
-    title: "Projects | Shrisha Engineers",
-    description: "Explore our completed, ongoing, and upcoming real estate projects",
+    title: "Projects Portfolio | Shrisha Engineers",
+    description:
+      "Explore completed and ongoing civil construction and structural engineering projects by Shrisha Engineers.",
     type: "website",
   },
 };
@@ -13,5 +18,11 @@ export default function ProjectsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <Navbar />
+      <main className="min-h-screen pt-20">{children}</main>
+      <Footer />
+    </>
+  );
 }

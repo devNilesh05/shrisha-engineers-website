@@ -1,26 +1,157 @@
-<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    @media (prefers-color-scheme: light) {
-      .background { fill: black; }
-      .foreground { fill: white; }
-    }
-    @media (prefers-color-scheme: dark) {
-      .background { fill: white; }
-      .foreground { fill: black; }
-    }
-  </style>
-  <g clip-path="url(#clip0_7960_43945)">
-    <rect class="background" width="180" height="180" rx="37" />
-    <g style="transform: scale(95%); transform-origin: center">
-      <path class="foreground"
-        d="M101.141 53H136.632C151.023 53 162.689 64.6662 162.689 79.0573V112.904H148.112V79.0573C148.112 78.7105 148.098 78.3662 148.072 78.0251L112.581 112.898C112.701 112.902 112.821 112.904 112.941 112.904H148.112V126.672H112.941C98.5504 126.672 86.5638 114.891 86.5638 100.5V66.7434H101.141V100.5C101.141 101.15 101.191 101.792 101.289 102.422L137.56 66.7816C137.255 66.7563 136.945 66.7434 136.632 66.7434H101.141V53Z" />
-      <path class="foreground"
-        d="M65.2926 124.136L14 66.7372H34.6355L64.7495 100.436V66.7372H80.1365V118.47C80.1365 126.278 70.4953 129.958 65.2926 124.136Z" />
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <clipPath id="clip0_7960_43945">
-      <rect width="180" height="180" fill="white" />
-    </clipPath>
+    <!-- Deep luxury navy gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080E1B" />
+      <stop offset="50%" stop-color="#0D1B2A" />
+      <stop offset="100%" stop-color="#1A2A44" />
+    </linearGradient>
+
+    <!-- Outer rim metallic stroke -->
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#F59E0B" stop-opacity="0.6" />
+      <stop offset="70%" stop-color="#3B82F6" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#FBBF24" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Gold Helmet Dome Gradient -->
+    <linearGradient id="helmetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB" />
+      <stop offset="15%" stop-color="#FDE68A" />
+      <stop offset="55%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+
+    <!-- Helmet Brim Gradient -->
+    <linearGradient id="brimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D97706" />
+      <stop offset="20%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#FDE68A" />
+      <stop offset="80%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+
+    <!-- 3D Shadow underneath brim -->
+    <linearGradient id="brimShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350F" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#451A03" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Monogram "S" Gradient -->
+    <linearGradient id="monogramGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+
+    <!-- Ambient Glow -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0" />
+    </radialGradient>
   </defs>
+
+  <!-- Background Canvas: Luxury Rounded Squircle -->
+  <rect width="512" height="512" rx="116" fill="url(#bgGrad)" />
+  <rect x="7" y="7" width="498" height="498" rx="110" fill="none" stroke="url(#rimGrad)" stroke-width="5" />
+
+  <!-- Ambient Golden Center Glow -->
+  <circle cx="256" cy="256" r="190" fill="url(#centerGlow)" />
+
+  <!-- Blueprint Radial Drafting Rings (Subtle Luxury Texture) -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="2" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="2" stroke-dasharray="8 8" />
+
+  <!-- ============================================== -->
+  <!-- MAIN EMBLEM: ARCHITECTURAL HARD HAT & MONOGRAM -->
+  <!-- ============================================== -->
+  <g id="main-emblem">
+    <!-- Top Central Ridge / Rib of Hardhat -->
+    <path d="M 244 88
+             L 268 88
+             C 272 88, 274 91, 274 96
+             L 272 170
+             L 240 170
+             L 238 96
+             C 238 91, 240 88, 244 88 Z"
+          fill="#FFFBEB" />
+
+    <!-- Helmet Left & Right Structural Reinforcement Ribs -->
+    <path d="M 186 128 C 196 112, 212 100, 226 96 L 230 170 L 206 170 Z" fill="#FDE68A" opacity="0.6"/>
+    <path d="M 326 128 C 316 112, 300 100, 286 96 L 282 170 L 306 170 Z" fill="#FDE68A" opacity="0.6"/>
+
+    <!-- Main Helmet Shell Dome -->
+    <path d="M 96 288
+             C 96 182, 168 96, 256 96
+             C 344 96, 416 182, 416 288
+             C 416 296, 410 302, 402 302
+             L 110 302
+             C 102 302, 96 296, 96 288 Z"
+          fill="url(#helmetGrad)" />
+
+    <!-- 3D Bevel Edge under the dome -->
+    <path d="M 100 292 L 412 292 L 416 304 L 96 304 Z" fill="url(#brimShadow)" />
+
+    <!-- Helmet Brim / Visor (Front Curved Shield) -->
+    <path d="M 64 302
+             C 64 294, 72 288, 82 288
+             L 430 288
+             C 440 288, 448 294, 448 302
+             C 448 316, 428 334, 400 338
+             L 112 338
+             C 84 334, 64 316, 64 302 Z"
+          fill="url(#brimGrad)" />
+
+    <!-- Bottom Rim Lip Highlight -->
+    <path d="M 112 338 L 400 338 C 420 335, 436 324, 442 314 C 434 326, 416 334, 396 336 L 116 336 C 96 334, 78 326, 70 314 C 76 324, 92 335, 112 338 Z" fill="#D97706" />
+
+    <!-- ============================================== -->
+    <!-- CENTER PIECE: THE BOLD ARCHITECTURAL "S"       -->
+    <!-- ============================================== -->
+    <!-- Dark Backing Keystone Plate for the "S" -->
+    <rect x="180" y="160" width="152" height="116" rx="20" fill="#080E1A" opacity="0.88" />
+    <rect x="180" y="160" width="152" height="116" rx="20" fill="none" stroke="#FDE68A" stroke-width="2.5" opacity="0.4" />
+
+    <!-- Precision Sculpted "S" Monogram -->
+    <path d="M 304 186
+             L 224 186
+             C 214 186, 206 193, 206 202
+             C 206 211, 214 218, 224 218
+             L 288 218
+             C 306 218, 320 231, 320 248
+             C 320 265, 306 278, 288 278
+             L 204 278
+             L 204 262
+             L 288 262
+             C 296 262, 302 256, 302 248
+             C 302 240, 296 234, 288 234
+             L 224 234
+             C 206 234, 192 220, 192 202
+             C 192 184, 206 170, 224 170
+             L 304 170
+             Z"
+          fill="url(#monogramGrad)" />
+
+    <!-- Gold Accent dot / Keystone Diamond -->
+    <polygon points="314,178 322,186 314,194 306,186" fill="#F59E0B" />
+    <polygon points="198,254 206,262 198,270 190,262" fill="#F59E0B" />
+
+    <!-- Subtitle Text "SHRISHA" embossed into the base -->
+    <g transform="translate(256, 396)">
+      <!-- Base Foundation Plinth -->
+      <rect x="-140" y="-18" width="280" height="34" rx="10" fill="#080E1B" stroke="#F59E0B" stroke-width="1.5" stroke-opacity="0.4" />
+      <text x="0" y="6"
+            font-family="system-ui, -apple-system, sans-serif"
+            font-size="20"
+            font-weight="900"
+            letter-spacing="9"
+            text-anchor="middle"
+            fill="#FFFBEB">SHRISHA</text>
+    </g>
+
+    <!-- Structural Anchor Bolts -->
+    <circle cx="132" cy="395" r="4" fill="#F59E0B" />
+    <circle cx="380" cy="395" r="4" fill="#F59E0B" />
+  </g>
 </svg>

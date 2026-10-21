@@ -2,8 +2,22 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProjectBySlug, projects } from "@/lib/projects-data";
 import { ProjectGallery } from "@/components/project-gallery";
-import { ChevronLeft, MapPin, Calendar } from "lucide-react";
+import {
+  ChevronLeft,
+  MapPin,
+  Calendar,
+  Building2,
+  CheckCircle2,
+  Clock,
+  Layers,
+  ArrowRight,
+  Phone,
+  MessageSquare,
+} from "lucide-react";
 import { Metadata } from "next";
+import { Badge } from "@/components/ui/badge";
+import { QuoteDialog } from "@/components/quote-dialog";
+import { COMPANY_INFO } from "@/lib/data/company-info";
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -20,10 +34,12 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${project.name} | Shrisha Engineers`,
-    description: project.description || `Explore ${project.name} in ${project.location}`,
+    title: `${project.name} | Shrisha Engineers Projects`,
+    description:
+      project.description ||
+      `Construction details, specifications, and gallery for ${project.name} in ${project.location}.`,
     openGraph: {
-      title: project.name,
+      title: `${project.name} - Shrisha Engineers`,
       description: project.description,
       images: [project.coverImage],
       type: "website",
@@ -47,123 +63,235 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
-  const statusConfig = {
-    completed: "Completed Project",
-    ongoing: "Ongoing Project",
-    upcoming: "Upcoming Project",
-  };
+  const otherProjects = projects.filter((p) => p.slug !== slug);
 
   return (
-    <div className="min-h-screen">
-      {/* Breadcrumb */}
-      <div className="border-b border-border bg-background px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+    <div className="min-h-screen bg-background">
+      {/* Breadcrumb Strip */}
+      <div className="border-b border-border/60 bg-muted/30 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-accent"
           >
-            <ChevronLeft className="size-4" />
-            Back to Projects
+            <ChevronLeft className="size-3.5" />
+            Back to All Projects
           </Link>
         </div>
       </div>
 
-      {/* Project Header */}
-      <section className="border-b border-border bg-gradient-to-br from-background to-background/80 px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-8 md:grid-cols-2 md:items-center">
-            {/* Content */}
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+      {/* Project Hero Header */}
+      <section className="relative overflow-hidden border-b border-border/60 bg-gradient-to-b from-muted/30 via-background to-background px-4 py-12 sm:px-6 md:py-20 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            {/* Left Info */}
+            <div className="lg:col-span-8">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="text-xs font-bold uppercase tracking-wider text-accent">
+                  {project.category}
+                </span>
+                <span>•</span>
+                {project.status === "completed" ? (
+                  <Badge variant="success" className="gap-1 shadow-sm">
+                    <CheckCircle2 className="size-3" />
+                    Completed Project
+                  </Badge>
+                ) : (
+                  <Badge variant="info" className="gap-1 shadow-sm">
+                    <Clock className="size-3" />
+                    Ongoing Execution
+                  </Badge>
+                )}
+                {project.year && (
+                  <>
+                    <span>•</span>
+                    <span className="text-xs text-muted-foreground font-medium">
+                      Year: {project.year}
+                    </span>
+                  </>
+                )}
+              </div>
+
+              <h1 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl">
                 {project.name}
               </h1>
 
-              {/* Meta Info */}
-              <div className="mt-6 space-y-3">
-                <div className="flex items-center gap-3 text-lg text-muted-foreground">
-                  <MapPin className="size-5 flex-shrink-0 text-accent" />
-                  {project.location}
+              {/* Location & Client meta */}
+              <div className="mt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <MapPin className="size-4 text-accent shrink-0" />
+                  <span className="text-foreground font-medium">{project.location}</span>
                 </div>
-                {project.year && (
-                  <div className="flex items-center gap-3 text-lg text-muted-foreground">
-                    <Calendar className="size-5 flex-shrink-0 text-accent" />
-                    {project.year}
+                {project.client && (
+                  <div className="flex items-center gap-2">
+                    <Building2 className="size-4 text-accent shrink-0" />
+                    <span>
+                      Client: <strong className="text-foreground">{project.client}</strong>
+                    </span>
                   </div>
                 )}
               </div>
 
-              {/* Status Badge */}
-              <div className="mt-6">
-                <span
-                  className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
-                    project.status === "completed"
-                      ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
-                      : project.status === "ongoing"
-                        ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-                        : "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
-                  }`}
-                >
-                  {statusConfig[project.status]}
-                </span>
-              </div>
-
               {/* Description */}
-              {project.description && (
-                <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                  {project.description}
-                </p>
-              )}
+              <p className="mt-6 text-base leading-relaxed text-muted-foreground max-w-3xl">
+                {project.description}
+              </p>
 
-              {/* Image Count */}
-              <div className="mt-6 text-sm text-muted-foreground">
-                {project.images.length} high-resolution images
+              {/* Action Buttons */}
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <QuoteDialog
+                  triggerLabel={`Inquire about ${project.name}`}
+                  defaultService={project.category}
+                />
+                <a
+                  href={`https://wa.me/919136195719?text=Hello%20Shrisha%20Engineers,%20I%20am%20interested%20in%20learning%20more%20about%20your%20project:%20${encodeURIComponent(
+                    project.name
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+                >
+                  <MessageSquare className="size-3.5" />
+                  WhatsApp Inquiries
+                </a>
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-lg border border-border bg-card p-6">
-                <div className="text-3xl font-bold text-accent">
-                  {project.images.length}
-                </div>
-                <p className="mt-2 text-sm text-muted-foreground">Images</p>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-6">
-                <div className="text-3xl font-bold text-accent">
-                  {project.status === "completed" ? "✓" : "◐"}
-                </div>
-                <p className="mt-2 text-sm text-muted-foreground capitalize">
-                  {project.status}
-                </p>
+            {/* Right Meta Card */}
+            <div className="lg:col-span-4">
+              <div className="rounded-2xl border border-border bg-card p-6 shadow-md">
+                <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Project Technical Summary
+                </h3>
+                <dl className="mt-4 divide-y divide-border/60 text-xs">
+                  <div className="py-2.5 flex justify-between">
+                    <dt className="text-muted-foreground">Status</dt>
+                    <dd className="font-semibold capitalize text-foreground">{project.status}</dd>
+                  </div>
+                  <div className="py-2.5 flex justify-between">
+                    <dt className="text-muted-foreground">Location</dt>
+                    <dd className="font-semibold text-foreground text-right">{project.location}</dd>
+                  </div>
+                  {project.builtUpArea && (
+                    <div className="py-2.5 flex justify-between">
+                      <dt className="text-muted-foreground">Built-up Area</dt>
+                      <dd className="font-semibold text-foreground">{project.builtUpArea}</dd>
+                    </div>
+                  )}
+                  {project.scope && (
+                    <div className="py-2.5 flex justify-between">
+                      <dt className="text-muted-foreground">Scope</dt>
+                      <dd className="font-semibold text-foreground text-right max-w-[60%]">
+                        {project.scope}
+                      </dd>
+                    </div>
+                  )}
+                  <div className="py-2.5 flex justify-between">
+                    <dt className="text-muted-foreground">Site Photography</dt>
+                    <dd className="font-semibold text-accent">{project.images.length} High-Res Images</dd>
+                  </div>
+                </dl>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Features Checklist if available */}
+      {project.features && project.features.length > 0 && (
+        <section className="border-b border-border/60 bg-muted/20 px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="font-heading text-xl font-bold text-foreground sm:text-2xl">
+              Engineering Highlights &amp; Scope
+            </h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {project.features.map((feat) => (
+                <div
+                  key={feat}
+                  className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-sm"
+                >
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent mt-0.5">
+                    <CheckCircle2 className="size-4" />
+                  </span>
+                  <span className="text-xs font-medium text-foreground leading-relaxed">
+                    {feat}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Gallery Section */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold mb-8">Project Gallery</h2>
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-accent">
+                Visual Documentation
+              </span>
+              <h2 className="mt-1 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+                On-Site Construction Gallery
+              </h2>
+            </div>
+            <span className="text-xs text-muted-foreground">
+              Click on any photograph to view in full resolution
+            </span>
+          </div>
+
           <ProjectGallery images={project.images} projectName={project.name} />
         </div>
       </section>
 
-      {/* More Projects CTA */}
-      <section className="border-t border-border bg-background/50 px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl text-center">
-          <h3 className="text-2xl font-bold">Explore More Projects</h3>
-          <p className="mt-2 text-muted-foreground">
-            Discover our portfolio of completed, ongoing, and upcoming developments
-          </p>
-          <Link
-            href="/projects"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground transition-all hover:shadow-lg hover:shadow-accent/30"
-          >
-            View All Projects
-          </Link>
-        </div>
-      </section>
+      {/* More Projects Section */}
+      {otherProjects.length > 0 && (
+        <section className="border-t border-border/80 bg-muted/30 px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h3 className="font-heading text-xl font-bold text-foreground sm:text-2xl">
+                  Explore Other Landmark Projects
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Discover more residential, institutional, and commercial executions
+                </p>
+              </div>
+              <Link
+                href="/projects"
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline"
+              >
+                <span>View All</span>
+                <ArrowRight className="size-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {otherProjects.map((p) => (
+                <Link
+                  key={p.id}
+                  href={`/projects/${p.slug}`}
+                  className="group block rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:border-accent hover:shadow-lg"
+                >
+                  <div className="text-xs font-bold uppercase tracking-wider text-accent">
+                    {p.category}
+                  </div>
+                  <h4 className="mt-2 font-heading text-lg font-bold text-foreground group-hover:text-accent transition-colors">
+                    {p.name}
+                  </h4>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {p.location} • {p.status}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-accent">
+                    <span>View project</span>
+                    <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

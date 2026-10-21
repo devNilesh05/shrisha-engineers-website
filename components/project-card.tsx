@@ -3,81 +3,96 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, Eye } from "lucide-react";
+import { MapPin, Eye, CheckCircle2, Clock, Calendar } from "lucide-react";
 import { Project } from "@/lib/projects-data";
+import { Badge } from "@/components/ui/badge";
 
 interface ProjectCardProps {
   project: Project;
   index?: number;
 }
 
-const statusConfig = {
-  completed: {
-    label: "Completed",
-    color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
-  },
-  ongoing: {
-    label: "Ongoing",
-    color: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  },
-  upcoming: {
-    label: "Upcoming",
-    color: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
-  },
-};
-
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
-  const status = statusConfig[project.status];
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      viewport={{ once: true, margin: "-100px" }}
+      transition={{ delay: index * 0.08, duration: 0.4 }}
+      viewport={{ once: true, margin: "-50px" }}
       className="group h-full"
     >
-      <Link href={`/projects/${project.slug}`}>
-        <div className="relative h-80 overflow-hidden rounded-xl bg-muted ring-1 ring-border transition-all duration-300 hover:ring-accent/50">
-          {/* Image */}
-          <Image
-            src={project.coverImage}
-            alt={project.name}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+      <Link href={`/projects/${project.slug}`} className="block h-full">
+        <div className="relative flex flex-col h-full overflow-hidden rounded-2xl border border-border/80 bg-card shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/10">
+          {/* Cover Image Container */}
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
+            <Image
+              src={project.coverImage}
+              alt={project.name}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90" />
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/0 transition-opacity duration-300 group-hover:from-black/90 group-hover:via-black/40" />
-
-          {/* Status Badge */}
-          <div className="absolute top-4 right-4">
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${status.color}`}>
-              {status.label}
-            </span>
-          </div>
-
-          {/* Content */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6">
-            {/* Title */}
-            <h3 className="text-xl font-bold text-white mb-2 line-clamp-2">
-              {project.name}
-            </h3>
-
-            {/* Location */}
-            <div className="flex items-center gap-2 text-sm text-white/80 mb-4">
-              <MapPin className="size-4 flex-shrink-0" />
-              <span>{project.location}</span>
+            {/* Status Badge */}
+            <div className="absolute top-4 left-4">
+              {project.status === "completed" ? (
+                <Badge variant="success" className="gap-1 shadow-md backdrop-blur-md">
+                  <CheckCircle2 className="size-3" />
+                  Completed ({project.year})
+                </Badge>
+              ) : (
+                <Badge variant="info" className="gap-1 shadow-md backdrop-blur-md">
+                  <Clock className="size-3" />
+                  Ongoing
+                </Badge>
+              )}
             </div>
 
-            {/* View Button */}
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-white/60">
-                {project.images.length} images
+            {/* Images count pill */}
+            <div className="absolute top-4 right-4 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-white/90 backdrop-blur-md">
+              {project.images.length} Photos
+            </div>
+
+            {/* Title & Category over image */}
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-accent">
+                {project.category}
               </span>
-              <div className="flex items-center gap-2 text-white/60 transition-colors group-hover:text-accent">
-                <span className="text-sm font-medium">View Project</span>
-                <Eye className="size-4 transition-transform group-hover:translate-x-1" />
+              <h3 className="mt-1 font-heading text-xl font-bold text-white group-hover:text-accent transition-colors line-clamp-1">
+                {project.name}
+              </h3>
+            </div>
+          </div>
+
+          {/* Details */}
+          <div className="flex flex-1 flex-col justify-between p-6">
+            <div className="space-y-2.5">
+              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                <MapPin className="size-3.5 text-accent shrink-0" />
+                <span className="truncate">{project.location}</span>
+              </div>
+
+              {project.client && (
+                <div className="text-xs text-muted-foreground/90">
+                  <span className="font-semibold text-foreground/80">Client:</span>{" "}
+                  {project.client}
+                </div>
+              )}
+
+              <p className="text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                {project.description}
+              </p>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="mt-5 pt-4 border-t border-border/60 flex items-center justify-between text-xs">
+              <span className="text-[11px] font-medium text-muted-foreground">
+                Built-up: {project.builtUpArea || "Turnkey"}
+              </span>
+              <div className="flex items-center gap-1.5 font-bold text-accent transition-colors group-hover:text-foreground">
+                <span>View Gallery</span>
+                <Eye className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </div>
             </div>
           </div>

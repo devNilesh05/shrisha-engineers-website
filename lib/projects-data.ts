@@ -5,11 +5,16 @@ export interface Project {
   slug: string;
   name: string;
   location: string;
+  client?: string;
+  category: string;
+  scope?: string;
+  builtUpArea?: string;
   status: ProjectStatus;
   coverImage: string;
-  description?: string;
+  description: string;
+  features?: string[];
   images: string[];
-  year?: number;
+  year: number;
 }
 
 export const projects: Project[] = [
@@ -17,10 +22,21 @@ export const projects: Project[] = [
     id: "1",
     slug: "ats-rhapsody",
     name: "ATS Rhapsody",
-    location: "Greater Noida West",
+    location: "Greater Noida West, NCR",
+    client: "ATS Infrastructure Ltd.",
+    category: "High-Rise Residential",
+    scope: "Civil Structural Works, Post-Tensioned Slabs, Architectural Facade",
+    builtUpArea: "650,000+ sq. ft.",
     status: "completed",
     coverImage: "/ats-rhapsody/1-completed.png",
-    description: "Premium residential tower with architectural excellence and modern amenities",
+    description:
+      "A flagship luxury residential high-rise complex featuring multiple soaring towers, seismic-resistant RCC frame engineering, signature architectural facades, and modern residential amenities.",
+    features: [
+      "Seismic Zone IV earthquake-resistant RCC frame",
+      "Modern monolithic formwork with high-early strength concrete",
+      "Architectural exterior facade lighting and weather-proof textured finishing",
+      "Landscaped podium and multi-level basement parking integration",
+    ],
     images: [
       "/ats-rhapsody/1-completed.png",
       "/ats-rhapsody/2-aerial-construction.png",
@@ -36,11 +52,22 @@ export const projects: Project[] = [
   {
     id: "2",
     slug: "rbi",
-    name: "RBI Staff Quarter",
-    location: "Kharghar, Mumbai",
+    name: "RBI Staff Quarters",
+    location: "Sector 10, Kharghar, Navi Mumbai",
+    client: "Reserve Bank of India (RBI)",
+    category: "Institutional Residential Complex",
+    scope: "Complete Civil, Structural Construction & Interior Finishing",
+    builtUpArea: "380,000+ sq. ft.",
     status: "completed",
     coverImage: "/rbistaff/image1.png",
-    description: "Multi-tower luxury residential complex with premium finishing",
+    description:
+      "Comprehensive multi-tower government staff residential quarter complex executed for the Reserve Bank of India in Kharghar, Navi Mumbai, adhering to rigorous CPWD and institutional specifications.",
+    features: [
+      "Stringent institutional QA/QC standards and third-party material testing",
+      "Multi-tower residential cluster with integrated community facilities",
+      "Extensive rainwater harvesting and centralized sewage treatment integration",
+      "Durable exterior coatings and thermal-insulated roofing systems",
+    ],
     images: [
       "/rbistaff/image1.png",
       "/rbistaff/image2.png",
@@ -50,14 +77,26 @@ export const projects: Project[] = [
       "/rbistaff/image6.jpeg",
     ],
     year: 2026,
-  }, {
+  },
+  {
     id: "3",
     slug: "iit",
-    name: "Residential Building",
-    location: "IIT Bombay, Powai, Mumbai",
+    name: "IIT Bombay Residential Building",
+    location: "IIT Bombay Campus, Powai, Mumbai",
+    client: "Indian Institute of Technology Bombay",
+    category: "Institutional Housing (Type-II)",
+    scope: "Turnkey Civil Construction of Type-II Residential Towers",
+    builtUpArea: "210,000+ sq. ft.",
     status: "ongoing",
     coverImage: "/iit/iit-3.jpeg",
-    description: "Construction of Residential Buildings consisting of Type-II",
+    description:
+      "Ongoing major construction of modern Type-II faculty and staff residential towers inside the premier IIT Bombay campus in Powai, featuring advanced RCC engineering and sustainable green-building practices.",
+    features: [
+      "Rigid zero-disruption campus construction protocols",
+      "High-grade M35/M40 concrete mix designs with fly-ash blending",
+      "Engineered aluminium formwork for rapid floor cycle turnaround",
+      "On-site real-time safety supervision and environmental dust containment",
+    ],
     images: [
       "/iit/iit-4.jpeg",
       "/iit/iit-3.jpeg",
