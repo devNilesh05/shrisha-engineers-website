@@ -148,15 +148,23 @@ export function About() {
             </motion.div>
 
             {/* Bottom Actions */}
-            <div className="mt-9 flex flex-wrap items-center gap-4 pt-2">
+            <div className="mt-9 flex flex-wrap items-center gap-3 pt-2">
               <QuoteDialog triggerLabel="Inquire About Your Project" />
               <a
                 href={COMPANY_INFO.phone.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 transition-colors hover:bg-emerald-500/20"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 transition-colors hover:bg-emerald-500/20"
               >
-                Direct WhatsApp Inquiries: {COMPANY_INFO.phone.display}
+                Direct WhatsApp: {COMPANY_INFO.phone.display}
+              </a>
+              <a
+                href={COMPANY_INFO.phoneSecondary.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 transition-colors hover:bg-emerald-500/20"
+              >
+                Direct WhatsApp: {COMPANY_INFO.phoneSecondary.display}
               </a>
             </div>
           </motion.div>

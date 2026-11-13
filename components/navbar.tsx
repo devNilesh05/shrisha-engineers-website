@@ -69,17 +69,29 @@ export function Navbar() {
               Civil &amp; Structural Contractors • Navi Mumbai &amp; Pan-India
             </span>
           </div>
-          <div className="flex items-center gap-5">
-            <a
-              href={COMPANY_INFO.phone.tel}
-              className={cn(
-                'flex items-center gap-1.5 font-medium transition-colors hover:text-accent',
-                isHeroTop ? 'text-white' : 'text-foreground'
-              )}
-            >
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1.5">
               <Phone className="size-3 text-accent" />
-              {COMPANY_INFO.phone.display}
-            </a>
+              <a
+                href={COMPANY_INFO.phone.tel}
+                className={cn(
+                  'font-medium transition-colors hover:text-accent',
+                  isHeroTop ? 'text-white' : 'text-foreground'
+                )}
+              >
+                {COMPANY_INFO.phone.display}
+              </a>
+              <span className={isHeroTop ? 'text-white/30' : 'text-border'}>/</span>
+              <a
+                href={COMPANY_INFO.phoneSecondary.tel}
+                className={cn(
+                  'font-medium transition-colors hover:text-accent',
+                  isHeroTop ? 'text-white' : 'text-foreground'
+                )}
+              >
+                {COMPANY_INFO.phoneSecondary.display}
+              </a>
+            </div>
             <span className={isHeroTop ? 'text-white/20' : 'text-border'}>•</span>
             <a
               href={COMPANY_INFO.phone.whatsapp}
@@ -203,19 +215,43 @@ export function Navbar() {
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <a
                     href={COMPANY_INFO.phone.tel}
-                    className="flex items-center justify-center gap-2 rounded-xl border border-border/80 bg-card p-3 text-xs font-medium text-foreground transition-colors hover:border-accent"
+                    className="flex flex-col items-center justify-center gap-0.5 rounded-xl border border-border/80 bg-card p-2.5 text-xs font-medium text-foreground transition-colors hover:border-accent"
                   >
-                    <Phone className="size-3.5 text-accent" />
-                    Call Now
+                    <div className="flex items-center gap-1.5 font-semibold text-accent">
+                      <Phone className="size-3" />
+                      <span>Call Line 1</span>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground">{COMPANY_INFO.phone.display}</span>
                   </a>
+                  <a
+                    href={COMPANY_INFO.phoneSecondary.tel}
+                    className="flex flex-col items-center justify-center gap-0.5 rounded-xl border border-border/80 bg-card p-2.5 text-xs font-medium text-foreground transition-colors hover:border-accent"
+                  >
+                    <div className="flex items-center gap-1.5 font-semibold text-accent">
+                      <Phone className="size-3" />
+                      <span>Call Line 2</span>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground">{COMPANY_INFO.phoneSecondary.display}</span>
+                  </a>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
                   <a
                     href={COMPANY_INFO.phone.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400"
+                    className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400"
                   >
                     <MessageSquare className="size-3.5" />
-                    WhatsApp
+                    WhatsApp 1
+                  </a>
+                  <a
+                    href={COMPANY_INFO.phoneSecondary.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400"
+                  >
+                    <MessageSquare className="size-3.5" />
+                    WhatsApp 2
                   </a>
                 </div>
               </div>

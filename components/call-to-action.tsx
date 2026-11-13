@@ -49,10 +49,18 @@ export function CallToAction() {
 
           <a
             href={COMPANY_INFO.phone.tel}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-accent-foreground/25 bg-black/10 px-7 py-4 text-sm font-semibold text-accent-foreground backdrop-blur-md transition-all duration-300 hover:bg-black/15 active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-accent-foreground/25 bg-black/10 px-6 py-4 text-sm font-semibold text-accent-foreground backdrop-blur-md transition-all duration-300 hover:bg-black/15 active:scale-[0.98]"
           >
             <Phone className="size-4" />
             {COMPANY_INFO.phone.display}
+          </a>
+
+          <a
+            href={COMPANY_INFO.phoneSecondary.tel}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-accent-foreground/25 bg-black/10 px-6 py-4 text-sm font-semibold text-accent-foreground backdrop-blur-md transition-all duration-300 hover:bg-black/15 active:scale-[0.98]"
+          >
+            <Phone className="size-4" />
+            {COMPANY_INFO.phoneSecondary.display}
           </a>
 
           <a

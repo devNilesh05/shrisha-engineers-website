@@ -91,16 +91,25 @@ export function ContactSection() {
                   <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                     Call &amp; Direct Phone
                   </h3>
-                  <a
-                    href={COMPANY_INFO.phone.tel}
-                    className="mt-1 block font-heading text-lg font-bold text-foreground hover:text-accent transition-colors"
-                  >
-                    {COMPANY_INFO.phone.display}
-                  </a>
+                  <div className="mt-1 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <a
+                      href={COMPANY_INFO.phone.tel}
+                      className="block font-heading text-base sm:text-lg font-bold text-foreground hover:text-accent transition-colors"
+                    >
+                      {COMPANY_INFO.phone.display}
+                    </a>
+                    <span className="hidden sm:inline text-muted-foreground">•</span>
+                    <a
+                      href={COMPANY_INFO.phoneSecondary.tel}
+                      className="block font-heading text-base sm:text-lg font-bold text-foreground hover:text-accent transition-colors"
+                    >
+                      {COMPANY_INFO.phoneSecondary.display}
+                    </a>
+                  </div>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Direct line to project coordinator &amp; civil engineers
                   </p>
-                  <div className="mt-3">
+                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
                     <a
                       href={COMPANY_INFO.phone.whatsapp}
                       target="_blank"
@@ -108,7 +117,16 @@ export function ContactSection() {
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline"
                     >
                       <MessageSquare className="size-3.5" />
-                      Chat directly on WhatsApp
+                      WhatsApp: {COMPANY_INFO.phone.display}
+                    </a>
+                    <a
+                      href={COMPANY_INFO.phoneSecondary.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline"
+                    >
+                      <MessageSquare className="size-3.5" />
+                      WhatsApp: {COMPANY_INFO.phoneSecondary.display}
                     </a>
                   </div>
                 </div>

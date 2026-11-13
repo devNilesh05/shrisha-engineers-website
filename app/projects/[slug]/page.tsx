@@ -149,10 +149,21 @@ export default async function ProjectDetailPage({
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
                 >
                   <MessageSquare className="size-3.5" />
-                  WhatsApp Inquiries
+                  WhatsApp ({COMPANY_INFO.phone.display})
+                </a>
+                <a
+                  href={`https://wa.me/917400392933?text=Hello%20Shrisha%20Engineers,%20I%20am%20interested%20in%20learning%20more%20about%20your%20project:%20${encodeURIComponent(
+                    project.name
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+                >
+                  <MessageSquare className="size-3.5" />
+                  WhatsApp ({COMPANY_INFO.phoneSecondary.display})
                 </a>
               </div>
             </div>

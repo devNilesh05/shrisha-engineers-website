@@ -20,7 +20,7 @@ const structuredData = {
     'Professional civil construction, structural engineering, infrastructure development, and turnkey project contracting in Navi Mumbai, Mumbai, and pan-India.',
   url: 'https://shrisha-engineers.vercel.app',
   email: COMPANY_INFO.email,
-  telephone: COMPANY_INFO.phone.display,
+  telephone: [COMPANY_INFO.phone.display, COMPANY_INFO.phoneSecondary.display],
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'B201, Devdrishti CHS, Navade Phase-2',

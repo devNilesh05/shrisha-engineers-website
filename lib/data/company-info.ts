@@ -12,6 +12,29 @@ export const COMPANY_INFO = {
     whatsapp:
       'https://wa.me/919136195719?text=Hello%20Shrisha%20Engineers,%20I%20would%20like%20to%20inquire%20about%20your%20construction%20and%20engineering%20services.',
   },
+  phoneSecondary: {
+    display: '+91 74003 92933',
+    raw: '+917400392933',
+    tel: 'tel:+917400392933',
+    whatsapp:
+      'https://wa.me/917400392933?text=Hello%20Shrisha%20Engineers,%20I%20would%20like%20to%20inquire%20about%20your%20construction%20and%20engineering%20services.',
+  },
+  phones: [
+    {
+      display: '+91 91361 95719',
+      raw: '+919136195719',
+      tel: 'tel:+919136195719',
+      whatsapp:
+        'https://wa.me/919136195719?text=Hello%20Shrisha%20Engineers,%20I%20would%20like%20to%20inquire%20about%20your%20construction%20and%20engineering%20services.',
+    },
+    {
+      display: '+91 74003 92933',
+      raw: '+917400392933',
+      tel: 'tel:+917400392933',
+      whatsapp:
+        'https://wa.me/917400392933?text=Hello%20Shrisha%20Engineers,%20I%20would%20like%20to%20inquire%20about%20your%20construction%20and%20engineering%20services.',
+    },
+  ],
   address: {
     line1: 'B201, Devdrishti CHS',
     line2: 'Navade Phase-2',
@@ -34,7 +57,8 @@ export const COMPANY_INFO = {
     { value: 100, suffix: '%', label: 'Safety & Quality Compliance' },
   ],
   socials: [
-    { label: 'WhatsApp', href: 'https://wa.me/919136195719', icon: 'whatsapp' },
+    { label: 'WhatsApp (+91 91361 95719)', href: 'https://wa.me/919136195719', icon: 'whatsapp' },
+    { label: 'WhatsApp (+91 74003 92933)', href: 'https://wa.me/917400392933', icon: 'whatsapp' },
     { label: 'LinkedIn', href: '#', icon: 'linkedin' },
     { label: 'Instagram', href: '#', icon: 'instagram' },
     { label: 'Facebook', href: '#', icon: 'facebook' },

@@ -213,14 +213,24 @@ export function QuoteDialog({
               />
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-end items-center">
-              <a
-                href={COMPANY_INFO.phone.tel}
-                className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5"
-              >
-                <PhoneCall className="size-3.5 text-accent" />
-                Call Directly: {COMPANY_INFO.phone.display}
-              </a>
+            <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+              <div className="text-xs text-muted-foreground flex flex-wrap items-center gap-1.5">
+                <PhoneCall className="size-3.5 text-accent shrink-0" />
+                <span>Call Directly:</span>
+                <a
+                  href={COMPANY_INFO.phone.tel}
+                  className="font-medium hover:text-foreground hover:underline"
+                >
+                  {COMPANY_INFO.phone.display}
+                </a>
+                <span>/</span>
+                <a
+                  href={COMPANY_INFO.phoneSecondary.tel}
+                  className="font-medium hover:text-foreground hover:underline"
+                >
+                  {COMPANY_INFO.phoneSecondary.display}
+                </a>
+              </div>
               <div className="flex gap-2 w-full sm:w-auto">
                 <Button
                   type="button"

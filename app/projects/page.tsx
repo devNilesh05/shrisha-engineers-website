@@ -165,16 +165,25 @@ export default function ProjectsPage() {
             Contact our engineering desk at <span className="text-foreground font-semibold">Devdrishti CHS, Navade Phase-2</span> for structural blueprints and turnkey cost estimates.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <QuoteDialog triggerLabel="Inquire About a Project" />
             <a
               href={COMPANY_INFO.phone.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-6 py-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
             >
               <MessageSquare className="size-4" />
               WhatsApp: {COMPANY_INFO.phone.display}
+            </a>
+            <a
+              href={COMPANY_INFO.phoneSecondary.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+            >
+              <MessageSquare className="size-4" />
+              WhatsApp: {COMPANY_INFO.phoneSecondary.display}
             </a>
           </div>
         </div>

@@ -136,13 +136,22 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.75 }}
             className="mt-10 flex flex-wrap items-center gap-6 border-t border-white/15 pt-6 text-xs text-white/80"
           >
-            <a
-              href={COMPANY_INFO.phone.tel}
-              className="flex items-center gap-2 transition-colors hover:text-accent"
-            >
+            <div className="flex items-center gap-2">
               <Phone className="size-3.5 text-accent" />
-              <span className="font-medium">{COMPANY_INFO.phone.display}</span>
-            </a>
+              <a
+                href={COMPANY_INFO.phone.tel}
+                className="font-medium transition-colors hover:text-accent"
+              >
+                {COMPANY_INFO.phone.display}
+              </a>
+              <span className="text-white/40">/</span>
+              <a
+                href={COMPANY_INFO.phoneSecondary.tel}
+                className="font-medium transition-colors hover:text-accent"
+              >
+                {COMPANY_INFO.phoneSecondary.display}
+              </a>
+            </div>
             <a
               href={`mailto:${COMPANY_INFO.email}`}
               className="flex items-center gap-2 transition-colors hover:text-accent"
